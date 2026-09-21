@@ -1,5 +1,11 @@
 # 🌤️ MeteoCompare
+<div align="center">
 
+**🌍 Language: [English](README.md) | [Русский](README_ru.md)**
+
+</div>
+
+---
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue?logo=github)](https://j4rest.github.io/weather-dashboard/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Languages](https://img.shields.io/badge/languages-EN%20%7C%20RU-blue)](#)
