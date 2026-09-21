@@ -1,64 +1,125 @@
-`index.html` is a complete single-page weather forecast comparison dashboard named **«МетеоСравнение» / MeteoCompare**.
+# 🌤️ MeteoCompare
 
-### Main functionality
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue?logo=github)](https://j4rest.github.io/weather-dashboard/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Languages](https://img.shields.io/badge/languages-EN%20%7C%20RU-blue)](#)
 
-- Lets users select:
-  - A city
-  - Number of days in the past to examine
-  - Forecast period length
-  - Daily or hourly resolution
-  - 12-hour or 24-hour time format
-  - Weather forecast models such as ECMWF, GFS, ICON, UKMO, GEM, and Météo-France
-- Fetches location, historical weather, and model forecast data from the **Open-Meteo APIs**.
-- Compares forecasts against observed weather data for:
-  - Temperature
-  - Wind speed
-  - Precipitation
-  - Sunshine duration
-- Displays results using **Chart.js** line and bar charts.
-- Calculates accuracy scores for each model and presents:
-  - Overall rankings
-  - Per-metric scores
-  - A highlighted best-performing model
+> **A free tool for analyzing weather forecast model accuracy**  
+> Compare predictions from ECMWF, GFS, ICON and other models against real observations
 
-### Additional tabs
+🔗 **[Open the dashboard →](https://j4rest.github.io/weather-dashboard/)**
 
-1. **Analysis**
-   - Charts, rankings, model scores, and export buttons.
-   - Supports CSV and JSON export.
+---
 
-2. **Compare periods**
-   - Compares model accuracy across two user-defined historical periods.
+## 📖 About the Project
 
-3. **Accuracy map**
-   - Allows multiple cities to be added.
-   - Uses **Leaflet** to display each city and its best-performing model.
-   - Supports several map tile providers:
-     - Carto light
-     - Carto dark
-     - Carto Voyager
-     - OpenStreetMap
-   - Includes fallback handling if map tiles fail to load.
+**MeteoCompare** is a web application that overlays weather model forecasts made N days ago onto actual observation data. You literally see each model's accuracy on a timeline!
 
-4. **Notifications**
-   - Configurable accuracy and temperature-error thresholds.
-   - Supports browser notifications.
-   - Maintains a local notification log.
+The app uses the free [Open-Meteo](https://open-meteo.com/) API and runs entirely in the browser — no servers or registration required.
 
-### UI and persistence
+---
 
-- Russian and English localization.
-- Light and dark themes.
-- Responsive layout for mobile screens.
-- Stores user settings, selected cities, map style, notification preferences, and alert history in `localStorage`.
-- Includes a basic dynamically generated PWA manifest and service worker.
+## 📸 Screenshots
 
-### External dependencies
+### 🌡️ Temperature and Wind Analysis
+![Main screen with charts](images/screenshot-main.png)
 
-- Chart.js
-- Chart.js date-fns adapter
-- Leaflet
-- Open-Meteo geocoding, archive, and forecast APIs
-- Carto and OpenStreetMap map tiles
+*Comparing ECMWF IFS forecast with actual temperature in Moscow*
 
-Overall, the file is both the application’s HTML structure and its entire frontend implementation: styling, interface markup, API calls, data processing, charts, map behavior, notifications, localization, persistence, and exports are all contained in one file.
+### 🏆 Model Ranking
+![Model ranking](images/screenshot-ranking.png)
+
+*Automatic accuracy calculation across 4 metrics: temperature, wind, precipitation, sunshine*
+
+### 🗺️ Accuracy Map
+![Accuracy map](images/screenshot-map.png)
+
+*The best model for every city in the world — visualized on an interactive map*
+
+### 📅 Period Comparison
+![Period comparison](images/screenshot-periods.png)
+
+*Discover how model accuracy changes across different time periods*
+
+### 🌙 Dark Theme
+![Dark theme](images/screenshot-dark.png)
+
+*Comfortable work at any time of day*
+
+### 🌐 Multilingual Support
+![English version](images/screenshot-english.png)
+
+*Full support for Russian and English languages*
+
+---
+
+## ✨ Features
+
+### 📊 Accuracy Analysis
+- Compare forecasts from **7 models** (ECMWF IFS, AIFS, AIGFS, GFS, ICON, UKMO, GEM, MétéoFrance)
+- **4 accuracy metrics**: temperature, wind, precipitation, sunshine hours
+- Visualization on charts with colored lines for each model
+- Automatic **model ranking** with medals 🥇🥈🥉
+
+### 🗺️ Accuracy Map
+- Interactive world map (Leaflet + OpenStreetMap)
+- Analyze multiple cities simultaneously
+- Colored markers show the best model for each region
+- 4 map styles to choose from (light, dark, Voyager, OSM)
+
+### 📅 Period Comparison
+- Compare model accuracy across different time periods
+- Find out which model performs better in winter vs summer
+- Table with color-coded improvements/declines
+
+### 🔔 Notifications
+- Configurable accuracy thresholds
+- Alerts for large temperature errors
+- Log of all notifications
+
+### 📱 PWA and Offline Mode
+- Install as an app on your phone or computer
+- Works offline (Service Worker)
+- Responsive design for mobile devices
+
+### 🌐 Multilingual Support
+- Full support for **English** and **Russian**
+- One-click language switching
+- Dynamic update of all texts and charts
+
+### 💾 Data Export
+- Export to **CSV** (for Excel/Google Sheets)
+- Export to **JSON** (for programmatic processing)
+
+### 🎨 Settings
+- Dark/light theme
+- Daily/hourly resolution
+- Time format 24h / 12h (AM/PM)
+- Auto-save all settings in the browser
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| **HTML5 / CSS3** | Structure and styles |
+| **Vanilla JavaScript** | Application logic |
+| [Chart.js](https://www.chartjs.org/) | Interactive charts |
+| [Leaflet](https://leafletjs.com/) | Interactive map |
+| [Open-Meteo API](https://open-meteo.com/) | Weather data (free) |
+| [CartoDB](https://carto.com/) | Map tiles |
+| **GitHub Pages** | Hosting |
+
+---
+
+## 🚀 Quick Start
+
+### Online (no installation required)
+Just open: **[https://j4rest.github.io/weather-dashboard/](https://j4rest.github.io/weather-dashboard/)**
+
+### Locally
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/j4rest/weather-dashboard.git
+   cd weather-dashboard
