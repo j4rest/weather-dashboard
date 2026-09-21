@@ -1,7 +1,7 @@
 # 🌤️ МетеоСравнение / MeteoCompare
 <div align="center">
 
-**🌍 Язык: [English](README.md) | [Русский](README_ru.md)**
+**🌍 Язык: [English](README.md) | [Русский](RREADME_RU.md)**
 
 </div>
 
