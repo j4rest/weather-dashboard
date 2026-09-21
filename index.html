@@ -3,14 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>МетеоСравнение — Точность моделей</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>MeteoCompare — Weather Forecast Model Accuracy</title>
+    <meta name="description" content="Compare weather forecast accuracy of ECMWF, GFS, ICON models vs real data. Interactive charts, accuracy maps, period comparison. Free meteorological analysis tool.">
+    <meta name="keywords" content="weather forecast accuracy, meteorological models, ECMWF, GFS, ICON, forecast comparison, weather analysis, model verification, temperature forecast, precipitation forecast">
+    <meta name="author" content="MeteoCompare">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://j4rest.github.io/weather-dashboard/">
+    
+    <!-- Open Graph / Facebook / VK / Telegram -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://j4rest.github.io/weather-dashboard/">
+    <meta property="og:title" content="MeteoCompare — Weather Forecast Model Accuracy">
+    <meta property="og:description" content="Compare accuracy of weather forecast models (ECMWF, GFS, ICON) vs real observations. Interactive charts and maps.">
+    <meta property="og:image" content="https://j4rest.github.io/weather-dashboard/og-image.png">
+    
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://j4rest.github.io/weather-dashboard/">
+    <meta property="twitter:title" content="MeteoCompare — Weather Forecast Model Accuracy">
+    <meta property="twitter:description" content="Compare accuracy of weather forecast models vs real observations. Interactive charts, maps, and analytics.">
+    <meta property="twitter:image" content="https://j4rest.github.io/weather-dashboard/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌤️</text></svg>">
+    
+    <!-- Theme Color & PWA -->
     <meta name="theme-color" content="#667eea">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MeteoCompare">
     <link rel="manifest" id="manifestLink">
+    
+    <!-- External Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
     <style>
         :root {
             --bg-start: #667eea; --bg-end: #764ba2;
@@ -324,7 +357,6 @@
             notifTempThreshold: 'Уведомлять при ошибке температуры > °C:',
             btnTestNotif: '🔔 Тест уведомления',
             btnEnableNotif: '✅ Включить уведомления',
-            // Динамические тексты
             fact: 'Факт',
             factTemp: 'Фактическая температура',
             factTempMax: 'Фактическая температура (макс)',
@@ -469,6 +501,35 @@
     let currentLang = localStorage.getItem('appLang') || 'ru';
     function t(key) { return I18N[currentLang][key] || I18N.ru[key] || key; }
 
+    function updateMetaTags() {
+        const metaTitle = document.querySelector('title');
+        const metaDesc = document.querySelector('meta[name="description"]');
+        const metaOgTitle = document.querySelector('meta[property="og:title"]');
+        const metaOgDesc = document.querySelector('meta[property="og:description"]');
+        const metaTwTitle = document.querySelector('meta[property="twitter:title"]');
+        const metaTwDesc = document.querySelector('meta[property="twitter:description"]');
+        
+        if (currentLang === 'ru') {
+            const t_ru = 'МетеоСравнение — Точность прогнозов погоды';
+            const d_ru = 'Сравнение точности метеомоделей ECMWF, GFS, ICON с реальными данными. Интерактивные графики, карта точности, сравнение периодов. Бесплатный инструмент анализа.';
+            if(metaTitle) metaTitle.textContent = t_ru;
+            if(metaDesc) metaDesc.content = d_ru;
+            if(metaOgTitle) metaOgTitle.content = t_ru;
+            if(metaOgDesc) metaOgDesc.content = d_ru;
+            if(metaTwTitle) metaTwTitle.content = t_ru;
+            if(metaTwDesc) metaTwDesc.content = d_ru;
+        } else {
+            const t_en = 'MeteoCompare — Weather Forecast Model Accuracy';
+            const d_en = 'Compare weather forecast accuracy of ECMWF, GFS, ICON models vs real data. Interactive charts, accuracy maps, period comparison. Free meteorological analysis tool.';
+            if(metaTitle) metaTitle.textContent = t_en;
+            if(metaDesc) metaDesc.content = d_en;
+            if(metaOgTitle) metaOgTitle.content = t_en;
+            if(metaOgDesc) metaOgDesc.content = d_en;
+            if(metaTwTitle) metaTwTitle.content = t_en;
+            if(metaTwDesc) metaTwDesc.content = d_en;
+        }
+    }
+
     function applyLanguage() {
         document.documentElement.lang = currentLang;
         document.getElementById('langToggle').textContent = currentLang.toUpperCase();
@@ -480,9 +541,9 @@
             const key = el.getAttribute('data-i18n-placeholder');
             if (I18N[currentLang][key]) el.placeholder = I18N[currentLang][key];
         });
-        // Обновить заголовок страницы
-        document.title = I18N[currentLang].appTitle.replace(/[^\w\s]/g,'').trim() + ' — ' + (currentLang === 'ru' ? 'Точность моделей' : 'Model Accuracy');
-        // Перерисовать динамический контент
+        
+        updateMetaTags();
+        
         if (lastData) showResults(lastData);
         renderAlertLog();
         if (mapObj) rebuildMapLegend();
@@ -548,7 +609,6 @@
         localStorage.setItem('wApp',JSON.stringify({loc:document.getElementById('location').value,db:document.getElementById('daysBack').value,fd:document.getElementById('forecastDays').value,res,t24,models:Array.from(document.querySelectorAll('input[name="model"]:checked')).map(c=>c.value)}));
     }
 
-    // Language toggle
     document.getElementById('langToggle').onclick = () => {
         currentLang = currentLang === 'ru' ? 'en' : 'ru';
         localStorage.setItem('appLang', currentLang);
